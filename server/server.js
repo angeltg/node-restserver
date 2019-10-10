@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 
 
 const app = express();
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 
 // parse application/x-www-form-urlencoded
@@ -14,7 +14,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use(require('./routes/usuario'));
+//Configuarion de rutas
+app.use(require('./routes/index'));
 
 mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true },
     (err, res) => {

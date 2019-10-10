@@ -51,4 +51,7 @@ usuarioSchema.methods.toJSON = function() {
 
 usuarioSchema.plugin(uniqueValidator, { message: '{PATH} ya existe en la bbdd' });
 
+
+mongoose.set('useFindAndModify', false);
+
 module.exports = mongoose.model('usuario', usuarioSchema);
