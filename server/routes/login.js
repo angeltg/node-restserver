@@ -13,7 +13,7 @@ const app = express();
 
 app.post('/login', (req, res) => {
 
-    let body = req.body;
+    const body = req.body;
 
     Usuario.findOne({ email: body.email }, (err, usuarioDB) => {
 
@@ -40,7 +40,7 @@ app.post('/login', (req, res) => {
             });
         }
 
-        let token = jwt.sign({
+        const token = jwt.sign({
             usuario: usuarioDB
         }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKE });
 
@@ -78,9 +78,9 @@ async function verify(token) {
 
 app.post('/login-google', async(req, res) => {
 
-    let token = req.body.idtoken;
+    const token = req.body.idtoken;
 
-    let googleUser = await verify(token)
+    const googleUser = await verify(token)
         .catch(e => {
             return res.status(403).json({
                 ok: false,
@@ -106,7 +106,7 @@ app.post('/login-google', async(req, res) => {
                     }
                 });
             } else {
-                let token = jwt.sign({
+                const token = jwt.sign({
                     usuario: usuarioDB
                 }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKE });
 
@@ -134,7 +134,7 @@ app.post('/login-google', async(req, res) => {
                 };
             });
 
-            let token = jwt.sign({
+            const token = jwt.sign({
                 usuario: usuarioDB
             }, process.env.SEED, { expiresIn: process.env.CADUCIDAD_TOKE });
 
